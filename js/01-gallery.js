@@ -3,8 +3,6 @@ import { galleryItems } from "./gallery-items.js";
 
 const galleryListEl = document.querySelector(".gallery");
 
-window.addEventListener("load", createGallery);
-
 galleryListEl.addEventListener("click", onImageClick);
 
 function createGallery() {
@@ -19,6 +17,8 @@ function createGallery() {
 
   galleryListEl.insertAdjacentHTML("beforeend", galleryItemsMarkUp);
 }
+
+createGallery();
 
 function onImageClick(event) {
   event.preventDefault();
@@ -52,5 +52,3 @@ function showClickedFullSizeImage(link) {
 
   instance.show();
 }
-
-console.log(galleryItems);
