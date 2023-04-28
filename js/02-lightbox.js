@@ -1,10 +1,7 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 const galleryListEl = document.querySelector(".gallery");
-
-window.addEventListener("load", createGallery);
-
-galleryListEl.addEventListener("click", onImageClick);
+const galleryLinks = document.querySelectorAll(".gallery__link");
 
 function createGallery() {
   const galleryItemsMarkUp = galleryItems
@@ -21,24 +18,15 @@ function createGallery() {
   galleryListEl.insertAdjacentHTML("beforeend", galleryItemsMarkUp);
 }
 
-function onImageClick(event) {
-  event.preventDefault();
+createGallery();
 
-  if (!event.target.classList.contains("gallery__image")) {
-    return;
-  }
-
-  let clickedGalleryImageLink = `${event.target.dataset.source}`;
-
-  showClickedFullSizeImage(clickedGalleryImageLink);
-}
-
-function showClickedFullSizeImage(link) {
-  const lightbox = new SimpleLightbox(".gallery a", {
-    /* options */
-    captionDelay: 250,
-    animationSlide: false,
+galleryLinks.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
   });
-}
+});
 
-console.log(galleryItems);
+new SimpleLightbox(".gallery__link", {
+  captionDelay: 250,
+  animationSlide: false,
+});
